@@ -428,8 +428,9 @@
 
         </div>
         <div class="container" data-aos="fade-up"><br><br>
-        <h3></h3>
+        <h3>
 		<div class="p-3 mb-2 bg-secondary text-white">Publications</div>
+		</h3>
 		<br><br>
       <p> <i class="bi bi-forward-fill"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0045793012000023"> Evaluation of diffusive flux across faces of arbitrary shaped finite volume cells, Computers & Fluids [SCI, If:2.3], Vol-57, 225-236, Elsevier, 2012. </p></a></i>
       <p><i class="bi bi-forward-fill"></i> <a href="https://www.tandfonline.com/doi/abs/10.1080/15435075.2011.622153">Numerical simulation of natural flow of air through a room, International Journal of Green Energy [SCIe, If:1.45], Vol-6(9), 540-552, Taylor & Francis, 2012.</p></a>
