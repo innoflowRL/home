@@ -1,0 +1,35 @@
+from upstox_api.api import *
+
+# Initialize Upstox session
+upstox = Upstox(api_key, api_secret)
+
+# Login and authenticate
+upstox.set_session(token)
+upstox.get_profile()
+
+# Initialize daily loss limit
+daily_loss_limit = -10000  # Rs. 10,000 loss
+
+# Monitor positions and calculate daily P&L
+def check_daily_pnl():
+    total_pnl = 0
+    positions = upstox.get_positions()
+
+    for position in positions:
+        total_pnl += position['unrealized_profit_loss'] + position['realized_profit_loss']
+
+    return total_pnl
+
+# Function to close all positions
+def close_all_positions():
+    positions = upstox.get_positions()
+    for position in positions:
+        if position['quantity'] > 0:
+            upstox.place_order(OrderType.SELL, position['instrument'], position['quantity'])
+
+# Main logic
+while True:
+    current_pnl = check_daily_pnl()
+    if current_pnl <= daily_loss_limit:
+        close_all_positions()
+        break
