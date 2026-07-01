@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/logo3-CKPTVWq7.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#071026" />
+    <meta name="description" content="IFRL - InnoFlow Research Labs: Engineering research and development solutions backed by IIT Madras excellence." />
+    <meta name="og:title" content="InnoFlow Research Labs" />
+    <meta name="og:description" content="Engineering research and development solutions" />
+    <meta name="og:image" content="src/assets/logo3.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="InnoFlow Research Labs" />
+    <meta name="twitter:description" content="Engineering research and development solutions" />
+    
+    <!-- Critical resource preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    
+    <!-- Preload critical fonts for above-the-fold text -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;600;700&display=swap" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Preload icon fonts to prevent layout shift (CLS) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+    
+    <!-- Preload critical image (logo) for header -->
+    <link rel="preload" href="/assets/logo3-CKPTVWq7.png" as="image" type="image/png" />
+    
+    <title>InnoFlow Research Labs - Engineering Excellence</title>
+    <script type="module" crossorigin src="/assets/index-Z0IEgM9F.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-DW8nrGbR.js">
+    <link rel="modulepreload" crossorigin href="/assets/motion-CpP4cJ5B.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-Btv1L1ZO.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Web Vitals Performance Monitoring -->
+    <script>
+      // Measure Core Web Vitals (LCP, FCP, CLS)
+      if ('PerformanceObserver' in window) {
+        // LCP - Largest Contentful Paint
+        const lcpObserver = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          console.log('🎯 LCP (Largest Contentful Paint):', Math.round(lastEntry.renderTime || lastEntry.loadTime), 'ms');
+        });
+        lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+        
+        // FCP - First Contentful Paint
+        const fcpObserver = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          console.log('⚡ FCP (First Contentful Paint):', Math.round(entries[0].startTime), 'ms');
+        });
+        fcpObserver.observe({ entryTypes: ['paint'] });
+        
+        // CLS - Cumulative Layout Shift
+        let clsValue = 0;
+        const clsObserver = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (!entry.hadRecentInput) {
+              clsValue += entry.value;
+              console.log('📏 CLS (Cumulative Layout Shift):', clsValue.toFixed(3));
+            }
+          }
+        });
+        clsObserver.observe({ entryTypes: ['layout-shift'] });
+      }
+      
+      // Log when page is fully interactive
+      window.addEventListener('load', () => {
+        const perfData = performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        console.log('✅ Page fully loaded:', pageLoadTime, 'ms');
+      });
+    </script>
+  </body>
+</html>
