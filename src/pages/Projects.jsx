@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const RedInit = ({ children }) => (
   <span className="brand-red">{children}</span>
@@ -39,7 +40,7 @@ function Projects() {
           </h2>
           <p style={{color: '#FFFFFF', marginBottom: '24px'}}>Choose which project list you want to explore.</p>
           <div className="project-actions" style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/projects/ongoing" style={{padding: '16px 28px', background: '#FFFFFF', borderRadius: '12px', boxShadow: '0 8px 24px rgba(16,24,40,0.06)', textDecoration: 'none', color: '#0f3854', fontWeight: 700, transition: 'all 0.3s ease', cursor: 'pointer', border: '1px solid rgba(15,56,84,0.12)'}}
+            <Link to="/projects/ongoing" style={{padding: '16px 28px', background: '#FFFFFF', borderRadius: '12px', boxShadow: '0 8px 24px rgba(16,24,40,0.06)', textDecoration: 'none', color: '#0f3854', fontWeight: 700, transition: 'all 0.3s ease', cursor: 'pointer', border: '1px solid rgba(15,56,84,0.12)'}}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-4px)';
               e.currentTarget.style.boxShadow = '0 16px 32px rgba(16,24,40,0.12)';
@@ -49,8 +50,8 @@ function Projects() {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = '0 8px 24px rgba(16,24,40,0.06)';
               e.currentTarget.style.backgroundColor = '#FFFFFF';
-            }}>Ongoing Projects</a>
-            <a href="/projects/completed" style={{padding: '16px 28px', background: '#FFFFFF', borderRadius: '12px', boxShadow: '0 8px 24px rgba(16,24,40,0.06)', textDecoration: 'none', color: '#0f3854', fontWeight: 700, transition: 'all 0.3s ease', cursor: 'pointer', border: '1px solid rgba(15,56,84,0.12)'}}
+            }}>Ongoing Projects</Link>
+            <Link to="/projects/completed" style={{padding: '16px 28px', background: '#FFFFFF', borderRadius: '12px', boxShadow: '0 8px 24px rgba(16,24,40,0.06)', textDecoration: 'none', color: '#0f3854', fontWeight: 700, transition: 'all 0.3s ease', cursor: 'pointer', border: '1px solid rgba(15,56,84,0.12)'}}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#f8fbff';
               e.currentTarget.style.boxShadow = '0 16px 32px rgba(16,24,40,0.12)';
@@ -60,7 +61,7 @@ function Projects() {
               e.currentTarget.style.backgroundColor = '#FFFFFF';
               e.currentTarget.style.boxShadow = '0 8px 24px rgba(16,24,40,0.06)';
               e.currentTarget.style.transform = 'translateY(0)';
-            }}>Completed Projects</a>
+            }}>Completed Projects</Link>
           </div>
         </div>
       </section>
@@ -79,7 +80,7 @@ function Projects() {
           <p style={{ color: '#FFFFFF', marginBottom: '40px', lineHeight: '1.6'}}>
             Let's collaborate to bring your engineering challenges to innovative solutions.
           </p>
-          <a href="/contact" className="action-text" style={{
+          <Link to="/contact" className="action-text" style={{
             padding: '18px 36px', 
             backgroundColor: 'var(--color-button-primary)', 
             color: '#FFFFFF', 
@@ -102,7 +103,7 @@ function Projects() {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
           }}>
             Start Your Project
-          </a>
+          </Link>
         </div>
       </section>
     </div>
