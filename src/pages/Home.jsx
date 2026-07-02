@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from 'react-router-dom';
 import ClientsCarousel from '../components/home/ClientsCarousel';
 import heroBackground from '../assets/bg2.jpg';
 
@@ -150,7 +151,7 @@ function Home() {
             }}>
             Engineering Consulting · Analysis & Simulation · Product Development · Testing & Validation · Industrial Solutions         </p>
           <div className="hero-actions" style={{display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <a href="/services" className="hero-button-large" style={{
+            <Link to="/services" className="hero-button-large" style={{
               padding: 'clamp(12px, 3vw, 18px) clamp(20px, 5vw, 36px)', 
               backgroundColor: 'var(--color-button-primary)', 
               color: '#FFFFFF', 
@@ -174,7 +175,7 @@ function Home() {
               e.currentTarget.style.transform = 'translateY(0)';
             }}>
               Explore Our Services
-            </a>
+            </Link>
             <a href="#about" onClick={handleScrollToAbout} className="hero-button-small" style={{
               padding: '18px 36px', 
               border: '2px solid rgba(255,255,255,0.3)', 
@@ -234,7 +235,7 @@ Our expertise spans advanced engineering analysis, including external aerodynami
 a strong foundation in scientific research and multidisciplinary engineering, we provide end-to-end solutions that help
 industries address complex engineering challenges with precision, reliability, and technical depth.                </p>
               </div>
-              <a href="/services" className="about-button" style={{
+              <Link to="/services" className="about-button" style={{
                 display: 'inline-flex', 
                 alignItems: 'center', 
                 padding: '16px 32px', 
@@ -258,7 +259,7 @@ industries address complex engineering challenges with precision, reliability, a
                 e.currentTarget.style.transform = 'translateY(0)';
               }}>
                 Discover Our Services →
-              </a>
+              </Link>
             </div>
             
             <div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import ServicesCarousel from '../components/services/ServicesCarousel';
 import { services } from '../data/services';
 
@@ -33,12 +34,12 @@ function Services() {
             to validated solution.
           </p>
           <div className="services-cta-actions">
-            <a href="/contact" className="action-text services-cta-primary">
+            <Link to="/contact" className="action-text services-cta-primary">
               Contact Us Today
-            </a>
-            <a href="/projects" className="action-text services-cta-secondary">
+            </Link>
+            <Link to="/projects" className="action-text services-cta-secondary">
               View Our Work
-            </a>
+            </Link>
           </div>
         </div>
       </section>
