@@ -373,9 +373,7 @@ section {
 
 .project-tab-scroll {
   flex: 1;
-  overflow: visible;
-  overflow-y: hidden;
-  padding: 8px 12px;
+    overflow-x: auto;
   background: rgba(15, 56, 84, 0.15);
   border-radius: 20px;
   backdrop-filter: blur(10px);

@@ -102,8 +102,7 @@ function Contact() {
         from_email: email,
         company_name: company || 'N/A',
         service_interest: service || 'N/A',
-        message: message,
-        to_email: 'contact@innoflow.in'
+        message: message
       },
       EMAILJS_PUBLIC_KEY
     )
