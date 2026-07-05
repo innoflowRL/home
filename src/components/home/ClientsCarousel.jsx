@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import gmshLogo from '../../assets/gmsh.png';
 import iitmLogo from '../../assets/logo20iitm.png';
 import lammpsLogo from '../../assets/lammp.gif';
@@ -32,80 +32,81 @@ const clients = [
 ];
 
 export default function ClientsCarousel() {
-  const containerRef = useRef(null);
   const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return; // don't autoplay for reduced motion
+    const mediaQuery = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!mediaQuery) return;
 
-    const container = containerRef.current;
-    if (!container) return;
+    const update = () => setReducedMotion(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener?.('change', update);
 
-    // ensure we start somewhere in the first half for seamless looping
-    if (container.scrollLeft === 0) container.scrollLeft = 1;
-
-    let rafId = null;
-    let last = null;
-    const speed = 0.06; // px per ms
-
-    function step(ts) {
-      if (last == null) last = ts;
-      const delta = ts - last;
-      last = ts;
-
-      if (!paused) {
-        container.scrollLeft += speed * delta;
-
-        // when we've scrolled past half (we duplicated items), loop back
-        const half = container.scrollWidth / 2;
-        if (container.scrollLeft >= half) {
-          container.scrollLeft = container.scrollLeft - half;
-        }
-      }
-
-      rafId = requestAnimationFrame(step);
-    }
-
-    rafId = requestAnimationFrame(step);
-
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, [paused]);
+    return () => mediaQuery.removeEventListener?.('change', update);
+  }, []);
 
   return (
-    <section aria-label="Our Collaborations" style={{padding: '28px 0 42px', background: 'linear-gradient(130deg, #071725 0%, #0f3854 50%, #287da8 100%)'}}>
-      <div style={{maxWidth: '1500px', margin: '0 auto', padding: '0 24px'}}>
+    <section aria-label="Our Collaborations" style={{ padding: '28px 0 42px', background: 'linear-gradient(130deg, #071725 0%, #0f3854 50%, #287da8 100%)' }}>
+      <div style={{ maxWidth: '1500px', margin: '0 auto', padding: '0 24px' }}>
         <h2 className="heading-font about-title" style={{
-          color: '#FFFFFF', 
-          marginBottom: '24px', 
+          color: '#FFFFFF',
+          marginBottom: '24px',
           fontWeight: 700,
           lineHeight: '1.1'
         }}>
-        <RedInit>O</RedInit>ur <RedInit>C</RedInit>ollaborations
+          <RedInit>O</RedInit>ur <RedInit>C</RedInit>ollaborations
         </h2>
-        <div
-          ref={containerRef}
-          style={{overflowX: 'auto'}}
-          className="clients-slider"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocus={() => setPaused(true)}
-          onBlur={() => setPaused(false)}
-        >
-          {/* hide native scrollbar but keep scrollable */}
-          <style>{`.clients-slider{ -ms-overflow-style: none; scrollbar-width: none; }
-            .clients-slider::-webkit-scrollbar{ display: none; }
-            .clients-track{ display:flex; align-items:center; padding:16px 8px; }
-            .clients-track a{ flex:0 0 auto; width:160px; margin-right:36px; display:flex; align-items:center; justify-content:center }
-            .clients-track img{ max-width:100%; height:64px; object-fit:contain; display:block }
-            .clients-track a:hover img { transform: scale(1.08); transition: transform 0.25s ease }
+        <div className="clients-slider">
+          <style>{`
+            .clients-slider {
+              overflow: hidden;
+              position: relative;
+              mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+              -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            }
+            .clients-track {
+              display: flex;
+              align-items: center;
+              width: max-content;
+              min-width: max-content;
+              gap: 36px;
+              padding: 16px 8px;
+              will-change: transform;
+              animation: ${reducedMotion ? 'none' : 'clients-marquee 30s linear infinite'};
+              animation-play-state: ${reducedMotion ? 'paused' : 'running'};
+            }
+            .clients-track a {
+              flex: 0 0 auto;
+              width: 160px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .clients-track img {
+              max-width: 100%;
+              height: 64px;
+              object-fit: contain;
+              display: block;
+            }
+            .clients-track a:hover img {
+              transform: scale(1.08);
+              transition: transform 0.25s ease;
+            }
+            @keyframes clients-marquee {
+              from { transform: translateX(0); }
+              to { transform: translateX(-50%); }
+            }
           `}</style>
 
           <div className="clients-track">
-            {clients.concat(clients).map((c, i) => (
-              <a key={i} href={c.href} target="_blank" rel="noopener noreferrer" aria-label={c.alt}
+            {[...clients, ...clients].map((c, i) => (
+              <a
+                key={`${c.alt}-${i}`}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={c.alt}
                 style={{
                   transition: 'all 0.3s ease',
                   opacity: 1,
@@ -120,7 +121,8 @@ export default function ClientsCarousel() {
                   e.currentTarget.style.opacity = '1';
                   e.currentTarget.style.transform = 'scale(1)';
                   e.currentTarget.style.filter = 'drop-shadow(none)';
-                }}>
+                }}
+              >
                 <img src={c.img} alt={c.alt} />
               </a>
             ))}
